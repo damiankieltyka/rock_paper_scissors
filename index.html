@@ -3,14 +3,43 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Rock Paper Scissors Game</title>
+        <title>Rock Paper Scissors</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
             integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     </head>
     <body>
+        <header>
+            <h1>Rock Paper Scissors Game</h1>
+        </header>
+
+        <div class="score-table">
+            <div class="score-badge" id="user-badge">User</div>
+            <div class="score-badge" id="computer-badge">Computer</div>
+            <span id="user-score">0</span>:<span id="computer-score">0</span>
+        </div>
+
+        <div class="result">
+            <p>Paper covers rock, You win!</p>
+        </div>
+
+        <div class="choices">
+            <div class="choice" id="rock">
+                <i class="fas fa-hand-rock"></i>
+            </div>
+            <div class="choice" id="paper">
+                <i class="fas fa-hand-paper"></i>
+            </div>
+            <div class="choice" id="scissors">
+                <i class="fas fa-hand-scissors"></i>
+            </div>
+        </div>
+
+        <p id="move-message">Your move!</p>
+
         <script src="script.js"></script>
     </body>
 </html>
