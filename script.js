@@ -1,5 +1,8 @@
 let userScore = 0;
 let computerScore = 0;
+const rock = 'rock';
+const paper = 'paper';
+const scissors = 'scissors';
 const userScore_span = document.getElementById('user-score');
 const computerScore_span = document.getElementById('computer-score');
 const scoreTable_div = document.querySelector('.score-table');
@@ -9,72 +12,60 @@ const choicePaper_div = document.getElementById('paper');
 const choiceScissors_div = document.getElementById('scissors');
 
 const getComputerChoice = () => {
-    const choices = ['rock', 'paper', 'scissors'];
-    const getRandomNumber = (Math.floor(Math.random() * 3));
-    return choices[getRandomNumber];
-}
-
-const toUpperCase = word => {
-    if (word === 'rock') return 'ROCK';
-    if (word === 'paper') return 'PAPER';
-    return 'SCISSORS';
-}
-
-const gameReset = () => {
-    if (userScore == '10') {
-        alert(`You won 10 rounds, game will restart, clicking OK`);
-        setTimeout(() => location.reload(), 100);
-    } else if (computerScore == '10'){
-        alert(`Computer won 10 rounds, game will restart after clicking OK`);
-        setTimeout(() => location.reload(), 100);
+    let getRandomNumber = (Math.floor(Math.random() * 3));
+    if (getRandomNumber == 0) {
+        getRandomNumber = rock;
+    } else if (getRandomNumber == 1) {
+        getRandomNumber = paper;
+    } else {
+        getRandomNumber = scissors;
     }
+    return getRandomNumber;
 }
 
 const won = (userChoice, computerChoice) => {
     userScore++;
     userScore_span.innerHTML = userScore;
     computerScore_span.innerHTML = computerScore;
-    result_p.innerHTML = `User choose ${toUpperCase(userChoice)}, that beats ${toUpperCase(computerChoice)}, what computer played. You won!`;
+    result_p.innerHTML = `User choose ${userChoice}, that beats ${computerChoice}, what computer played. You won!`;
 }
 
 const lost = (userChoice, computerChoice) => {
     computerScore++;
     userScore_span.innerHTML = userScore;
     computerScore_span.innerHTML = computerScore;
-    result_p.innerHTML = `User choose ${toUpperCase(userChoice)}, that loses with ${toUpperCase(computerChoice)}, what computer played. You lost!`;
+    result_p.innerHTML = `User choose ${userChoice}, that loses with ${computerChoice}, what computer played. You lost!`;
 }
 
 const tie = (userChoice, computerChoice) => {
-    result_p.innerHTML = `User choose ${toUpperCase(userChoice)}, that equals to ${toUpperCase(computerChoice)}, what computer played. It's a tie!!`;
+    result_p.innerHTML = `User choose ${userChoice}, that equals to ${computerChoice}, what computer played. It's a tie!!`;
 }
-
 
 const playGame = (userChoice) => {
     const computerChoice = getComputerChoice();
-    switch (userChoice + computerChoice) {
-        case 'rockscissors':
-        case 'paperrock':
-        case 'scissorspaper':
-            won(userChoice, computerChoice);
-            break;
-        case 'rockpaper':
-        case 'paperscissors':
-        case 'scissorsrock':
-            lost(userChoice, computerChoice);
-            break;
-        case 'rockrock':
-        case 'paperpaper':
-        case 'scissorsscissors':
-            tie(userChoice, computerChoice);
-            break;
+    if (userChoice === computerChoice) {
+        return tie(userChoice, computerChoice);
+    } else {
+        switch (userChoice + computerChoice) {
+            case rock + scissors:
+            case paper + rock:
+            case scissors + paper:
+                won(userChoice, computerChoice);
+                break;
+            case rock + paper:
+            case paper + scissors:
+            case scissors + rock:
+                lost(userChoice, computerChoice);
+                break;
+        }
     }
-    gameReset();
+
 }
 
 const mainGame = () => {
-    choiceRock_div.addEventListener('click', () => playGame('rock'));
-    choicePaper_div.addEventListener('click', () => playGame('paper'));
-    choiceScissors_div.addEventListener('click', () => playGame('scissors'));
+    choiceRock_div.addEventListener('click', () => playGame(rock));
+    choicePaper_div.addEventListener('click', () => playGame(paper));
+    choiceScissors_div.addEventListener('click', () => playGame(scissors));
 }
 
 mainGame();
