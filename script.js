@@ -5,7 +5,6 @@ const paper = 'paper';
 const scissors = 'scissors';
 const userScore_span = document.getElementById('user-score');
 const computerScore_span = document.getElementById('computer-score');
-const scoreTable_div = document.querySelector('.score-table');
 const result_p = document.querySelector('.result > p');
 const choiceRock_div = document.getElementById('rock');
 const choicePaper_div = document.getElementById('paper');
